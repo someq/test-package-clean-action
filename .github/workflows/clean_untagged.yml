@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Clean untagged images
-        uses: retech-us/clean-ghcr-action@v4.1
+        uses: retech-us/clean-ghcr-action@v4.1.1
         with:
           token: ${{ secrets.TEST_TOKEN_30 }}
           repository_owner: someq
