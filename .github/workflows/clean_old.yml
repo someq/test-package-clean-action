@@ -5,14 +5,14 @@ on:
       older:
         description: Delete images older than time in seconds
         required: true
-        default: 2592000 # 1 month
+        default: "2592000" # 1 month
 
 jobs:
-  clean_images:
+  clean_old_images:
     name: Clean old images
     runs-on: ubuntu-22.04
     steps:
-      - name: Clean
+      - name: Clean old images
         uses: retech-us/clean-ghcr-action@v4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
