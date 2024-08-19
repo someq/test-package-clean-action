@@ -1,0 +1,23 @@
+name: Clean old images
+on:
+  workflow_dispatch:
+    inputs:
+      older:
+        description: Delete images older than time in seconds
+        required: true
+        default: 2592000 # 1 month
+
+jobs:
+  clean_images:
+    name: Clean old images
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clean
+        uses: retech-us/clean-ghcr-action@v4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: someq
+          repository: test-package-clean-action
+          untagged_only: false
+          owner_type: user
+          older: ${{ github.event.inputs.older }}
