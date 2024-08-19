@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  clean_images:
+  clean_untagged_images:
     name: Clean untagged images
     runs-on: ubuntu-22.04
     steps:
-      - name: Clean
+      - name: Clean untagged images
         uses: retech-us/clean-ghcr-action@v4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
