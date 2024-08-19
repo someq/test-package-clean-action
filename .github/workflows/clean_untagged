@@ -1,0 +1,17 @@
+name: Clean untagged images
+on:
+  workflow_dispatch:
+
+jobs:
+  clean_images:
+    name: Clean untagged images
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clean
+        uses: retech-us/clean-ghcr-action@v4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: someq
+          repository: test-package-clean-action
+          untagged_only: true
+          owner_type: user
