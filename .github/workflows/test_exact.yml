@@ -1,0 +1,38 @@
+name: Clean images
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    inputs:
+      tagged-max-age:
+        default: '7776000'  # 3 months
+      untagged-max-age:
+        default: '2592000'  # 1 month
+env:
+  TAGGED_MAX_AGE: ${{ inputs.tagged-max-aage || vars.DELETE_TAGGED_MAX_AGE || '7776000' }}
+  UNTAGGED_MAX_AGE: ${{ inputs.untagged-max-age || vars.DELETE_UNTAGGED_MAX_AGE || '2592000' }}
+
+jobs:
+  clean_images:
+    name: Clean images
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clean untagged older than ${{ env.UNTAGGED_MAX_AGE }}
+        uses: retech-us/clean-ghcr-action@v4.1.1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository_owner: someq
+          repository: test-package-clean-action
+          untagged_only: true
+          owner_type: user
+          older: ${{ env.UNTAGGED_MAX_AGE }}
+
+      - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
+        uses: retech-us/clean-ghcr-action@v4.1.1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository_owner: someq
+          repository: test-package-clean-action
+          untagged_only: false
+          owner_type: user
+          older: ${{ env.TAGGED_MAX_AGE }}
