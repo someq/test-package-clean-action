@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Display
-      - run: |
+        run: |
             echo RV ${{ vars.TEST_VAR_REPO }}
             echo INP ${{ inputs.test-env }}
             echo INP_DEF ${{ inputs.test-env-default-var }}
