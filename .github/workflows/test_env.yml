@@ -1,0 +1,31 @@
+name: Test env
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      test-env:
+        default: v-inp
+      test-env-default-var:
+        default: ${{ vars.TEST_VAR_REPO }}
+        
+env:
+  TEST_VAR_1: ${{ inputs.test-env || vars.TEST_VAR_REPO || v1-env }}
+  TEST_VAR_2: ${{ inputs.no-var || vars.TEST_VAR_REPO || v2-env }}
+  TEST_VAR_3: ${{ inputs.test-env-default-var || v3-env }}
+  TEST_VAR_4: ${{ inputs.no-var || vars.no-var || v4-env }}
+
+jobs:
+  display_vars:
+    name: Display variables
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Display
+      - run: |
+            echo RV ${{ vars.TEST_VAR_REPO }}
+            echo INP ${{ inputs.test-env }}
+            echo INP_DEF ${{ inputs.test-env-default-var }}
+            echo TV1 ${{ env.TEST_VAR_1 }}
+            echo TV2 ${{ env.TEST_VAR_2 }}
+            echo TV3 ${{ env.TEST_VAR_3 }}
+            echo TV3 ${{ env.TEST_VAR_4 }}
