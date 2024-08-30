@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       tagged-max-age:
-        default: '5'  # 3 months
+        default: '7776000'  # 3 months
       untagged-max-age:
-        default: '5'  # 1 month
+        default: '2592000'  # 1 month
 permissions:
   packages: write
 env:
@@ -27,7 +27,7 @@ jobs:
           repository: test-package-clean-action
           untagged_only: true
           owner_type: user
-          older: ${{ env.UNTAGGED_MAX_AGE }}
+          older: '240'
           package_name: test-package-clean-action
 
       - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
