@@ -9,7 +9,6 @@ on:
       untagged-max-age:
         default: '2592000'  # 1 month
 permissions:
-  contents: read
   packages: write
 env:
   TAGGED_MAX_AGE: ${{ inputs.tagged-max-aage || vars.DELETE_TAGGED_MAX_AGE || '7776000' }}
@@ -29,6 +28,7 @@ jobs:
           untagged_only: true
           owner_type: user
           older: ${{ env.UNTAGGED_MAX_AGE }}
+          package_name: test-package-clean-action
 
       - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
         uses: retech-us/clean-ghcr-action@v4.1.5
@@ -39,3 +39,4 @@ jobs:
           untagged_only: false
           owner_type: user
           older: ${{ env.TAGGED_MAX_AGE }}
+          package_name: test-package-clean-action
