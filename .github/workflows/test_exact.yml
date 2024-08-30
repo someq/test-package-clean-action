@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Clean untagged older than ${{ env.UNTAGGED_MAX_AGE }}
-        uses: retech-us/clean-ghcr-action@v4.1
+        uses: retech-us/clean-ghcr-action@v4.1.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository_owner: someq
@@ -28,7 +28,7 @@ jobs:
           older: ${{ env.UNTAGGED_MAX_AGE }}
 
       - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
-        uses: retech-us/clean-ghcr-action@v4.1
+        uses: retech-us/clean-ghcr-action@v4.1.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository_owner: someq
