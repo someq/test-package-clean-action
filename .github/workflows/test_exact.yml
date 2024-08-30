@@ -20,7 +20,7 @@ jobs:
       - name: Clean untagged older than ${{ env.UNTAGGED_MAX_AGE }}
         uses: retech-us/clean-ghcr-action@v4.1.1
         with:
-          token: ${{ secrets.TEST_TOKEN_30 }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository_owner: someq
           repository: test-package-clean-action
           untagged_only: true
@@ -30,7 +30,7 @@ jobs:
       - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
         uses: retech-us/clean-ghcr-action@v4.1.1
         with:
-          token: ${{ secrets.TEST_TOKEN_30 }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository_owner: someq
           repository: test-package-clean-action
           untagged_only: false
