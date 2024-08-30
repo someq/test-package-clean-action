@@ -1,13 +1,13 @@
 name: Clean images
 on:
   schedule:
-    - cron: '0 23 * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       tagged-max-age:
-        default: '7776000'  # 3 months
+        default: '5'  # 3 months
       untagged-max-age:
-        default: '2592000'  # 1 month
+        default: '5'  # 1 month
 permissions:
   packages: write
 env:
