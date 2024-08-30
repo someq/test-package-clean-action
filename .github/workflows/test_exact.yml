@@ -1,7 +1,7 @@
 name: Clean images
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 23 * * *'
   workflow_dispatch:
     inputs:
       tagged-max-age:
@@ -27,7 +27,7 @@ jobs:
           repository: test-package-clean-action
           untagged_only: true
           owner_type: user
-          older: '240'
+          older: ${{ env.UNTAGGED_MAX_AGE }}
           package_name: test-package-clean-action
 
       - name: Clean tagged older than ${{ env.TAGGED_MAX_AGE }}
