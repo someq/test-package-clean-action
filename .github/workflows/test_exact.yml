@@ -8,6 +8,8 @@ on:
         default: '7776000'  # 3 months
       untagged-max-age:
         default: '2592000'  # 1 month
+permissions:
+  packages: write
 env:
   TAGGED_MAX_AGE: ${{ inputs.tagged-max-aage || vars.DELETE_TAGGED_MAX_AGE || '7776000' }}
   UNTAGGED_MAX_AGE: ${{ inputs.untagged-max-age || vars.DELETE_UNTAGGED_MAX_AGE || '2592000' }}
