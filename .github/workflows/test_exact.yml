@@ -39,3 +39,4 @@ jobs:
           untagged_only: false
           owner_type: user
           older: ${{ env.TAGGED_MAX_AGE }}
+          package_name: test-package-clean-action
